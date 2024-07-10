@@ -1,4 +1,17 @@
+import { hostname } from 'os';
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+
+    // compiler: {
+    //     styledComponents: true
+    // }
+    images: {
+        remotePatterns: [{
+            protocol: 'https',
+            hostname: 'res.cloudinary.com'
+        }]
+    }
+};
 
 export default nextConfig;

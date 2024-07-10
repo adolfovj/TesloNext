@@ -1,0 +1,32 @@
+version: '3.8' # version
+
+services:
+  postgres-db:
+    image: postgres:15.3 # imagen que va a levantar
+    restart: always #levantar la BD siempre
+
+    environment: # Variables de entorno ${DB_USER}
+    # Se cran estan variables de entorno en un archivo de nuestro proyecto
+      # - POSTGRES_USER= ${DB_USER}
+      # - POSTGRES_DB= ${DB_NAME}
+      # - POSTGRES_PASSWORD= ${DB_PASSWORD}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+
+    volumes: # Nos permite poder conectar una carpeta de nuestra
+    # computadora con una carpeta en el servidor
+    # se tiene una carpeta postgres : se conecta con el contendor ... 
+    # crea carpeta alojado en el /var/lib/postgresql/data
+      - ./postgres:/var/lib/postgresql/data #
+
+    ports:
+    # BD postgres tiene por defecto el puerto 5432
+    # se couminca el puerto de mi equipo con el del contenedor
+    # Solo mediante puertos se crea las comunicaciones externas con docker
+      # - 5432:5432 
+      - 5432:5432
+
+    # container_name: todos-db #nonmbre contenedor
+    # Desarrollo
+
